@@ -4,7 +4,7 @@ Plugin Name: ACF-VC Integrator
 Plugin URI:https://wordpress.org/plugins/acf-vc-integrator/
 Description: ACF VC Integrator plugin is the easiest way to output your Advanced Custom Posttype fields in a WPBakery Page Builder Grid.
 Author: Frederik Rosendahl-Kaa
-Version: 1.8.5
+Version: 1.8.6
 Author URI: https://frederikrosendahlkaa.dk/
 Text Domain: acf-vc-integrator
 Domain Path: /languages

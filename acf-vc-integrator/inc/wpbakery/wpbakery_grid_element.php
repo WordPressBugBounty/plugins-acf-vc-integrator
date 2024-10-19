@@ -25,8 +25,16 @@ if (is_array( $groups )) {
         $flg = 1;
 
         $id = isset( $group['id'] ) ? 'id' : ( isset( $group['ID'] ) ? 'ID' : 'id' );
-        $groups_param_values[ $group['title'] ] = $group[ $id ];
-        $fields = function_exists( 'acf_get_fields' ) ? acf_get_fields( $group[ $id ] ) : apply_filters( 'acf/field_group/get_fields', array(), $group[ $id ] );
+
+        $group_id = $group[ $id ];
+            
+        //if $group is local field group and id is 0 then set id from key
+        if ( array_key_exists( 'local', $group ) && $group_id == 0 ) {
+            $group_id = $group['key'];
+        }
+
+        $groups_param_values[ $group['title'] ] = $group_id;
+        $fields = function_exists( 'acf_get_fields' ) ? acf_get_fields( $group_id ) : apply_filters( 'acf/field_group/get_fields', array(), $group_id );
   $fields_param_value = array();
   if ($fields != false) :
         foreach ( $fields as $field ) {
@@ -36,13 +44,13 @@ if (is_array( $groups )) {
         $fields_params[] = array(
             'type' => 'dropdown',
             'heading' => __( 'Field name', 'acf-vc-integrator' ),
-            'param_name' => 'field_from_' . $group[ $id ],
+            'param_name' => 'field_from_' . $group_id,
             'value' => $fields_param_value,
             'save_always' => true,
             'description' => __( 'Select field from group.', 'acf-vc-integrator' ),
             'dependency' => array(
                 'element' => 'field_group',
-                'value' => array( (string) $group[ $id ] ),
+                'value' => array( (string) $group_id ),
             )
         );
 
