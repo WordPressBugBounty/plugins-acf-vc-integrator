@@ -3,7 +3,7 @@ Contributors: Frederik Rosendahl-Kaa
 Tags: ACF, Advanced Custom Fields, WPBakery Page Builder, Templatera, Grid builder
 Requires at least: 4.4.0
 Tested up to: 6.6
-Stable tag: 1.8.6
+Stable tag: 1.8.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -71,6 +71,10 @@ To use google map you need a google map api key.
 Read more on [https://www.advancedcustomfields.com/resources/google-map#google-map%20api](https://www.advancedcustomfields.com/resources/google-map#google-map%20api)
 
 == Changelog ==
+
+= 1.8.7 =
+Release Date: February 3, 2025
+Bug fix: Uncaught TypeError: https://wordpress.org/support/topic/fatal-error-in-acf_vc_helper-php/
 
 = 1.8.6 =
 Release Date: October 19, 2024

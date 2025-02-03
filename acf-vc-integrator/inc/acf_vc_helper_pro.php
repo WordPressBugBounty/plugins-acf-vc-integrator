@@ -1,6 +1,7 @@
 <?php
   if ( ! class_exists( 'acf_vc_helper_pro' ) ) {
     class acf_vc_helper_pro extends acf_vc_helper {
+      public $construct;
 
       public function __construct() {
           parent::__construct();

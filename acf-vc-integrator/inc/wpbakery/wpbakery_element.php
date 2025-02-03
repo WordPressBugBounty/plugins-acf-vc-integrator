@@ -42,7 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 $fields_param_value[ $field['label'] ] = (string) $field['key'];
             }
       endif;
-      error_log( print_r( $fields_params, true ) );
             $fields_params[] = array(
                 'type' => 'dropdown',
                 'heading' => __( 'Field name', 'acf-vc-integrator' ),

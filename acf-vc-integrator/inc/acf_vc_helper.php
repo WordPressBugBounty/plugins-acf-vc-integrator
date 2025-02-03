@@ -1,6 +1,7 @@
 <?php
 if ( ! class_exists( 'acf_vc_helper' ) ) {
   class acf_vc_helper {
+	  public $construct;
 
 	  public function __construct() {
 		  $this->construct = 'we are in the parent class';
@@ -662,28 +663,20 @@ if ( ! class_exists( 'acf_vc_helper' ) ) {
 		return apply_filters('acfvc_url',$output,$field,$link_text,$post_id);
 	  }
 
-	  public function link($field,$args,$post_id) {
-		  $link = $field["value"];
-
-		  if ( $field["return_format"] == "array" ) {
-			  if ( empty( $link["title"] ) ) {
-				   $link_titel =  $link["url"];
-			  } else {
-				  $link_titel = $link["title"];
-			  }
-
-			  if ($link['target']) {
-				  $link_target = $link['target'];
-			  } else {
-				  $link_target = "_self";
-			  }
-
-			  $output = '<a href="'.esc_url($link["url"]).'" target="'.esc_attr($link_target).'">'.esc_html($link_titel).'</a>';
-		  } else{
-			  $output = '<a href="'.esc_url($link).'" >'.esc_html($link).'</a>';
-		  }
-		  return apply_filters('acfvc_link',$output,$field,$post_id);
-	  }
+	public function link($field, $args, $post_id) {
+		$link = $field["value"];
+		
+		if ($field["return_format"] == "array" && is_array($link)) {
+			$link_titel = !empty($link["title"]) ? $link["title"] : ($link["url"] ?? '');
+			$link_target = !empty($link['target']) ? $link['target'] : "_self";
+			
+			$output = '<a href="' . esc_url($link["url"] ?? '') . '" target="' . esc_attr($link_target) . '">' . esc_html($link_titel) . '</a>';
+		} else {
+			$output = '<a href="' . esc_url((string) $link) . '">' . esc_html((string) $link) . '</a>';
+		}
+		
+		return apply_filters('acfvc_link', $output, $field, $post_id);
+	}
 
 	public function oembed($field, $args,$post_id) {
 		$output = do_shortcode ( $field["value"] );
